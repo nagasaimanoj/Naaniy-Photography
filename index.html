@@ -3,8 +3,90 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/scripting.js"></script>
-    <link rel="stylesheet" type="text/css" href="/styling.css">
+    <script>
+        function load_images() {
+            var folder = "pics_for_site/";
+
+            $.ajax({
+                url: folder,
+                success: function (data) {
+                    var i = 0;
+                    $(data).find("a").attr("href", function (i, val) {
+                        if (val.match(/\.(jpe?g|png|gif)$/)) {
+                            switch (i % 4) {
+                                case 0:
+                                    $("#col1").append("<img src='" + val + "'>");
+                                    break;
+                                case 1:
+                                    $("#col2").append("<img src='" + val + "'>");
+                                    break;
+                                case 2:
+                                    $("#col3").append("<img src='" + val + "'>");
+                                    break;
+                                case 3:
+                                    $("#col4").append("<img src='" + val + "'>");
+                                    break;
+                            }
+                            i++;
+                        }
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            load_images();
+
+            $("body").show();
+        });
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial;
+        }
+
+        img {
+            margin-top: 8px;
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .header {
+            text-align: center;
+            padding: 32px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 4px;
+        }
+
+        .col {
+            flex: 25%;
+            max-width: 25%;
+            padding: 0 4px;
+        }
+
+        @media (max-width: 1000px) {
+            .col {
+                flex: 50%;
+                max-width: 50%;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .col {
+                flex: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body class="container" hidden>

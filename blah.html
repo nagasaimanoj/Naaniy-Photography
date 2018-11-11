@@ -80,7 +80,9 @@
 </head>
 
 <body>
-    <img src='photos/adult-attractive-beautiful-871495.jpg' width='300' height='200'>
+    <img class='each_img' src='photos/adult-attractive-beautiful-871495.jpg' width='300' height='200'>
+    <img class='each_img' src='photos/animals-baby-birds-bird-nest-1275680.jpg' width='300' height='200'>
+    <img class='each_img' src='photos/autumn-colorful-colourful-33109.jpg' width='300' height='200'>
 
     <div id='myModal' class='modal'>
         <span class='close'>×</span>
@@ -88,19 +90,20 @@
     </div>
 
     <script>
-        var modal = document.getElementById('myModal');
-        var modalImg = document.getElementById('img01');
-
-        $('img').click(
+        $(
             function () {
-                modal.style.display = 'block';
-                modalImg.src = this.src;
-            }
-        );
+                $('.each_img').click(
+                    function () {
+                        $('#myModal').css('display', 'block');
+                        $('#img01').attr('src', this.src);
+                    }
+                );
 
-        $('.close').click(
-            function () {
-                modal.style.display = 'none';
+                $('.close').click(
+                    function () {
+                        $('#myModal').css('display', 'none');
+                    }
+                );
             }
         );
     </script>

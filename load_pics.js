@@ -1,13 +1,13 @@
-function load_images() {
-    var folder = 'photos/';
+let load_images = () => {
+    let folder = 'photos/';
 
     $.ajax({
         url: folder,
-        success: function (data) {
-            var i = 0;
-            $(data).find('a').attr('href', function (i, val) {
+        success: (data) => {
+            let i = 0;
+            $(data).find('a').attr('href', (i, val) => {
                 if (val.match(/\.(jpe?g|png|gif)$/)) {
-                    var col = '#col' + (i % 4);
+                    let col = '#col' + (i % 4);
 
                     $(col).append('<img class="each_img" src="' + val + '" >');
 
@@ -18,26 +18,23 @@ function load_images() {
     });
 }
 
-function load_model() {
-    var modal = document.getElementById('myModal');
-    var modalImg = document.getElementById('img01');
-
+let load_model = () => {
     $('.each_img').click(
-        function () {
-            modal.style.display = 'block';
-            modalImg.src = this.src;
+        () => {
+            $('#myModal').css('display', 'block');
+            $('#img01').attr('src', this.src);
         }
     );
 
     $('.close').click(
-        function () {
-            modal.style.display = 'none';
+        () => {
+            $('#myModal').css('display', 'none');
         }
     );
 }
 
 $(
-    function () {
+    () => {
         load_images();
 
         load_model();

@@ -11,7 +11,7 @@ let load_photos = () => {
 
                     val = "'" + val + "'";
 
-                    $(col).append('<img onclick="load_image(' + val + ')" src=' + val + ' >');
+                    $(col).append('<img onclick="load_image(' + val + ')" class="image" src=' + val + ' >');
 
                     i++;
                 }
